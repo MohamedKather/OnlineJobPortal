@@ -15,7 +15,7 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class AdminEntity {
+public class Admin {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int adminId;

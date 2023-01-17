@@ -3,9 +3,9 @@ package com.cg.jobportal.repository;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.cg.jobportal.entity.AdminEntity;
+import com.cg.jobportal.entity.Admin;
 
 @Repository
-public interface AdminRepository extends JpaRepository<AdminEntity, Integer> {
+public interface AdminRepository extends JpaRepository<Admin, Integer> {
 
 }
