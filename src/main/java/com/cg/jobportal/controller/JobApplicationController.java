@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import com.cg.jobportal.entity.JobApplication;
 
 import io.swagger.annotations.ApiOperation;
+import jakarta.validation.Valid;
 
 public class JobApplicationController {
 	@ApiOperation(value = "apply to job application")
