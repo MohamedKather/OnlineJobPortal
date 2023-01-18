@@ -1,14 +1,19 @@
 package com.cg.jobportal.entity;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+
+@Entity
 public class Recruiter {
 	
-	private int id;
+	@Id
+	private  Long id;
 	private String firstName;
 	private String lastName;
 	private String userName;
 	private String password;
 	
-	public Recruiter(int id, String firstName, String lastName, String userName, String password) {
+	public Recruiter(Long id, String firstName, String lastName, String userName, String password) {
 		super();
 		this.id = id;
 		this.firstName = firstName;
@@ -21,11 +26,11 @@ public class Recruiter {
 		super();
 	}
 
-	public int getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -61,5 +66,4 @@ public class Recruiter {
 		this.password = password;
 	}
 	
-
 }
