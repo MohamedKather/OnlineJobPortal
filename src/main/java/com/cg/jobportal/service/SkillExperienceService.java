@@ -21,6 +21,8 @@ public interface SkillExperienceService {
 
 
 	Optional<Skill> getSkillById(long id);
+
+	void deleteSkill(long id);
 }
 	
 
