@@ -1,7 +1,7 @@
 package com.cg.jobportal.controller;
 
-import com.cg.freelanceapp.entities.Freelancer;
-import com.cg.freelanceapp.entities.Skill;
+import com.cg.jobportal.entity.Freelancer;
+import com.cg.jobportal.entity.Skill;
 
 public class SkillExperienceController {
 	private Long id;

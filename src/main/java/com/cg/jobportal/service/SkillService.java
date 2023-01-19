@@ -9,9 +9,9 @@ public interface SkillService {
 	
 	
 
-	Skill getSkill(long ent);
+	Skill getSkill(Skill ent);
 
-	List<com.cg.freelanceapp.entities.Skill> getAllSkills();
+	List<Skill> getAllSkills();
 
 	String deleteById(long id);
 
@@ -20,8 +20,7 @@ public interface SkillService {
 	Optional<com.cg.freelanceapp.entities.Skill> getSkillById(long skillId);
 
 	com.cg.freelanceapp.entities.Skill saveSkill(com.cg.freelanceapp.entities.Skill skill);
-
-	void deleteSkill(long id);
+	
 		
 
 	}

@@ -2,6 +2,8 @@ package com.cg.jobportal.controller;
 
 import java.util.List;
 
+
+
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,13 +24,13 @@ public class SkillController {
 	private SkillService serv;
 
 	@PostMapping("/saveSkill")
-	public ResponseEntity<Skill> saveSkill(@RequestBody long ent) {
-		Skill savedskill = ((SkillService) serv).getSkill(ent);
+	public ResponseEntity<Skill> saveSkill(Skill ent){
+		Skill savedskill =  serv.getSkill(ent);
 		return new ResponseEntity<Skill>(savedskill, HttpStatus.CREATED);
 	}
 
 	@PutMapping("/update")
-	public ResponseEntity<Skill> updateSkill(@RequestBody int ent) {
+	public ResponseEntity<Skill> updateSkill(Skill ent) {
 		Skill update = serv.getSkill(ent);
 		return new ResponseEntity<Skill>(update, HttpStatus.ACCEPTED);
 	}
