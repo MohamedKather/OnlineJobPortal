@@ -1,5 +1,6 @@
 package com.cg.jobportal.entity;
 
+<<<<<<< HEAD
 import java.util.List;
 import java.util.Optional;
 import java.util.function.Function;
@@ -24,6 +25,10 @@ import jakarta.persistence.GeneratedValue;
 		    @Id
 		    @GeneratedValue(strategy = GenerationType.AUTO)
 		    @Column(name="skill_id", updatable=false)		
+=======
+public class Skill {
+		
+>>>>>>> 7abff7b5b3dcd70b31878496630c469b79724cf2
 		private Long id;
 		private String name;
 		private String description;
