@@ -5,8 +5,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.cg.freelanceapp.entities.Skill;
-import com.cg.freelanceapp.entities.SkillExperience;
+import com.cg.jobportal.entity.Skill;
 import com.cg.jobportal.repository.SkillRepository;
 
 public abstract class SkillExperienceImpl implements SkillExperienceService{
@@ -14,12 +13,12 @@ public abstract class SkillExperienceImpl implements SkillExperienceService{
 	private SkillRepository skillRepo;
 	@Override
 	public Skill saveSkill(Skill skill) {
-		Skill savedSkill=skillRepo.save(skill);
+		Skill savedSkill=skillRepo.saveAll(skill);
 		return savedSkill;
 	}
 	@Override
-	public List<Skill> getAllSkills() {
-        List<Skill> Skills = skillRepo.findAll();
+	public List<com.cg.jobportal.service.Skill> getAllSkills() {
+        List<com.cg.freelanceapp.entities.Skill> Skills = skillRepo.findAll();
 		return Skills;
 	}
 	@Override
@@ -34,7 +33,7 @@ public abstract class SkillExperienceImpl implements SkillExperienceService{
 	}
 	
 	public Skill updateEmployee(Skill skill) {
-		Skill skills=skillRepo.save(skill);
+		Skill skills=skillRepo.saveAll(skill);
 		return skills;
 	}
 
