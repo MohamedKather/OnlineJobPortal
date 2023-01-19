@@ -36,13 +36,13 @@ public class AdminController {
 			return new ResponseEntity<Admin> (HttpStatus.CONFLICT);
 		Admin regAdmin=serv.registerAdmin(ad);
 		return new ResponseEntity<Admin>(HttpStatus.CREATED);
-	}
+	}*/
 	@PostMapping("/loginAdmin")
 	public ResponseEntity<String> loginAdmin(@RequestBody String email, @RequestBody String password ){
 		String logAdmin=serv.loginAdmin(email,password);
 		return new ResponseEntity<String>(logAdmin,HttpStatus.ACCEPTED);
 	}
-*/
+
 	@PostMapping("/saveAdmin")
 	public ResponseEntity<Admin> saveAdmin(Admin ent)throws UserAlreadyExistException{
 		Admin savedad=serv.saveAdmin(ent);
