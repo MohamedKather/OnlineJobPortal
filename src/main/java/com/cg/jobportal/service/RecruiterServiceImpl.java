@@ -4,13 +4,9 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import com.cg.jobportal.entity.Recruiter;
 import com.cg.jobportal.repository.RecruiterRepository;
-<<<<<<< HEAD
 
-=======
->>>>>>> 776633c4ccacd1fd31533e1914bbdfbaadda2e20
 @Service
 public class RecruiterServiceImpl implements RecruiterService{
 	
