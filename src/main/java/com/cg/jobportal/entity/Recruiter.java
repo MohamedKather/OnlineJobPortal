@@ -13,6 +13,7 @@ public class Recruiter {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name="recruiter_id")
 	private  Long id;
 	@Column(nullable = false)
 	private String firstName;

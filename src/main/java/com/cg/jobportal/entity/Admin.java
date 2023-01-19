@@ -28,7 +28,6 @@ public class Admin {
 	private String email;
 	@Column(nullable = false)
 	private String password;
-
 	public Admin(String firstName, String lastName, String userName, String email, String password) {
 		super();
 		this.firstName = firstName;
@@ -37,5 +36,4 @@ public class Admin {
 		this.email = email;
 		this.password = password;
 	}
-
 }

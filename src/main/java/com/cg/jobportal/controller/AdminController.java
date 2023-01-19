@@ -36,7 +36,6 @@ public class AdminController {
 		return new ResponseEntity<>(s,HttpStatus.OK);
 	}
 
-
 	@PostMapping("/saveAdmin")
 	public ResponseEntity<Admin> saveAdmin(Admin ent)throws AdminAlreadyExistException{
 		Admin savedad=serv.saveAdmin(ent);
