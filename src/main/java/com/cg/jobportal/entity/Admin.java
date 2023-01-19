@@ -1,9 +1,5 @@
 package com.cg.jobportal.entity;
 
-
-
-import org.hibernate.annotations.Columns;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -19,8 +15,8 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 public class Admin {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -29,10 +25,8 @@ public class Admin {
 	private String firstName;
 	@NotNull
 	private String lastName;
-	@Size(min = 8, message = "It's Required Field")
+	@Column(nullable = false, length = 10)
 	private String userName;
-	@Column(nullable = false, length=10)
+	@Column(nullable = false, length = 10)
 	private String password;
-	
-
 }
