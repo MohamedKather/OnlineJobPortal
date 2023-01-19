@@ -18,62 +18,50 @@ import com.cg.jobportal.service.JobApplicationService;
 
 import io.swagger.annotations.ApiOperation;
 import jakarta.validation.Valid;
+
 @RestController
 public class JobApplicationController {
-	
-	
+
 	@Autowired
 	private JobApplicationService jobApplicationService;
-	
-	
-	
+
 	@ApiOperation(value = "apply to job application")
 	@PostMapping(value = "/apply")
-	public ResponseEntity<String> applyToJob(@RequestBody JobApplication jobApplication){
-		JobApplication jp=jobApplicationService.applyToJob(jobApplication);
+	public ResponseEntity<String> applyToJob(@RequestBody JobApplication jobApplication) {
+		JobApplication jp = jobApplicationService.applyToJob(jobApplication);
 		return new ResponseEntity<>("Job Applied Successfully", HttpStatus.CREATED);
 	}
 
+	@GetMapping(value = "/findAll")
+	public ResponseEntity<List<JobApplication>> findAll() {
+		return new ResponseEntity<>(jobApplicationService.findAll(), HttpStatus.OK);
+	}
 
+	@DeleteMapping(value = "/delete/{id}")
+	public ResponseEntity<Object> remove(@Valid @PathVariable long id) {
+		jobApplicationService.remove(id);
+		return new ResponseEntity<>("job application deleted successfully", HttpStatus.OK);
+	}
 
+	@PutMapping(value = "/update/{id}")
+	public ResponseEntity<Object> updateJobApplication(@Valid @PathVariable long id,
+			@RequestBody JobApplication jobApplication) {
+		jobApplicationService.updateJobApplication(id, jobApplication);
+		return new ResponseEntity<>("job application updated successfully", HttpStatus.OK);
+	}
 
-
-
-@GetMapping(value = "/findAll")
-public ResponseEntity<List<JobApplication>> findAll(){
-	return new ResponseEntity<>(jobApplicationService.findAll(), HttpStatus.OK);
-}
-
-
-
-
-
-@DeleteMapping(value = "/delete/{id}")
-public ResponseEntity<Object> remove(@Valid @PathVariable long id){
-	jobApplicationService.remove(id);
-	return new ResponseEntity<>("job application deleted successfully", HttpStatus.OK);
-}
-
-
-
-@PutMapping(value = "/update/{id}")
-public ResponseEntity<Object> updateJobApplication(@Valid @PathVariable long id,
-		@RequestBody JobApplication jobApplication){  
-	jobApplicationService.updateJobApplication(id, jobApplication);
-	return new ResponseEntity<>("job application updated successfully", HttpStatus.OK);
-}
-
-
-
-/*@GetMapping(value = "/findAll/job/{jobId}")
-public ResponseEntity<Object> findAllApplications(@PathVariable Long jobId) throws InvalidJobApplicationException {
-	return new ResponseEntity<>(jobApplicationService.findAllByJobId(jobId), HttpStatus.OK);
-}
-
-
-/*@GetMapping(value = "/findByFrId/job/{jobId}/frId/{frId}")
-public ResponseEntity<Object> findByFrId(@PathVariable Long frId) {
-	return new ResponseEntity<>(jobApplicationService.findByFreeLancerid(frId), HttpStatus.OK);
-}*/
+	/*
+	 * @GetMapping(value = "/findAll/job/{jobId}") public ResponseEntity<Object>
+	 * findAllApplications(@PathVariable Long jobId) throws
+	 * InvalidJobApplicationException { return new
+	 * ResponseEntity<>(jobApplicationService.findAllByJobId(jobId), HttpStatus.OK);
+	 * }
+	 * 
+	 * 
+	 * /*@GetMapping(value = "/findByFrId/job/{jobId}/frId/{frId}") public
+	 * ResponseEntity<Object> findByFrId(@PathVariable Long frId) { return new
+	 * ResponseEntity<>(jobApplicationService.findByFreeLancerid(frId),
+	 * HttpStatus.OK); }
+	 */
 
 }
