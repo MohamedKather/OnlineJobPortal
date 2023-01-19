@@ -4,26 +4,34 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import com.cg.freelanceapp.entities.Skill;
+import org.springframework.stereotype.Service;
+
+import com.cg.jobportal.entity.Skill;
+import com.cg.jobportal.exceptions.InvalidSkillException;
 import com.cg.jobportal.repository.SkillRepository;
 
 
 @Service
-public abstract class SkillServiceImpl implements SkillService {
+public class SkillServiceImpl implements SkillService {
 
 	@Autowired
 	private SkillRepository skillRepo;
-	@Override
-	public Skill saveSkill(Skill skill) {
 	
-		Skill savedskill=skillRepo.save(skill);
-		return savedskill;
+	@Override
+	public  Skill saveSkill(Skill skl) throws InvalidSkillException{
+		if(skillRepo.existsById(skl.getId()))
+			throw new InvalidSkillException();
+		
+		Skill savedSkill= skillRepo.save(skl);
+		return savedSkill;
 	}
+	
 	@Override
 	public List<Skill> getAllSkills() {
         List<Skill> skills = skillRepo.findAll();
 		return skills;
 	}
+	
 	
 	@Override
 	public Optional<Skill> getSkillById(long id) {
@@ -36,7 +44,7 @@ public abstract class SkillServiceImpl implements SkillService {
 		skillRepo.deleteById(id);
 		
 	}
-	
+	@Override
 	public Skill updateSkill(Skill skill) {
 		Skill skills=skillRepo.save(skill);
 		return skills;

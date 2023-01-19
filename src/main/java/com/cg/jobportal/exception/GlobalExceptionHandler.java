@@ -32,5 +32,10 @@ public class GlobalExceptionHandler {
 	public ResponseEntity<String> NoBookmarkedFreelancerExistsException(NoBookmarkedFreelancerExistsException msg){
 		return new ResponseEntity<String> (" No bookmarked freelancer exists in db", HttpStatus.CONFLICT);
 	} 
-
+	
+	@ExceptionHandler(value=InvalidSkillException.class)
+	public ResponseEntity<String> InvalidSkillException(InvalidSkillException msg){
+		return new ResponseEntity<String>("Invalid skill entered",HttpStatus.CONFLICT);
+	}
+	
 }
