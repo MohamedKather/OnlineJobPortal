@@ -12,10 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-<<<<<<< HEAD
-=======
 import org.springframework.web.bind.annotation.RequestMapping;
->>>>>>> 776633c4ccacd1fd31533e1914bbdfbaadda2e20
 import org.springframework.web.bind.annotation.RestController;
 
 import com.cg.jobportal.entity.Admin;
@@ -38,6 +35,8 @@ public class RecruiterController {
 		List<Recruiter> Recruiter = recServ.getAllRecruiters();
 		return new ResponseEntity<>(Recruiter, HttpStatus.OK);
 	}
+	
+	
 	
 	@DeleteMapping("/deleteRecruiterId/{id}")
 	public ResponseEntity<String> deleteById(@PathVariable Long id) {
