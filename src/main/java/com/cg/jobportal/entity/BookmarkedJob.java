@@ -1,20 +1,19 @@
 package com.cg.jobportal.entity;
 
-import org.springframework.boot.autoconfigure.batch.BatchProperties.Job;
-
 import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 
 @Entity
 public class BookmarkedJob {
-	
-	private Long Id;
+	@Id
+	private Long id;
 	private String job;
 	private String skill;
 	private String freelancer;
 	
 	public BookmarkedJob(Long id, String job, String skill, String freelancer) {
 		super();
-		Id = id;
+		this.id = id;
 		this.job = job;
 		this.skill = skill;
 		this.freelancer = freelancer;
@@ -25,11 +24,11 @@ public class BookmarkedJob {
 	}
 
 	public Long getId() {
-		return Id;
+		return id;
 	}
 
 	public void setId(Long id) {
-		Id = id;
+		this.id = id;
 	}
 
 	public String getJob() {
@@ -55,6 +54,6 @@ public class BookmarkedJob {
 	public void setFreelancer(String freelancer) {
 		this.freelancer = freelancer;
 	}
-	
+
 	
 }
