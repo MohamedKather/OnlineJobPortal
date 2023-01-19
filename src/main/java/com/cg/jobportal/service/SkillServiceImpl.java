@@ -27,12 +27,12 @@ public abstract class SkillServiceImpl implements SkillService {
 		return skills;
 	}
 	@Override
-	public Optional<Skill> getSkillById(int id) {
+	public Optional<Skill> getSkillById(long id) {
 		Optional<Skill> skill=skillRepo.findById(id);
 		return skill;
 	}
 	@Override
-	public void deleteSkill(int id) {
+	public void deleteSkill(long id) {
 		skillRepo.deleteById(id);
 		
 	}

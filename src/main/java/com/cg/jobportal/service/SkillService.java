@@ -19,8 +19,8 @@ public interface SkillService {
 
 	Optional<Skill> getSkillById(int skillId);
 
-	com.cg.freelanceapp.entities.Skill saveSkill(com.cg.freelanceapp.entities.Skill skill)
-			throws UserAlreadyExistExceptions, DuplicateFirstName, InvalidAgeException;
+	com.cg.freelanceapp.entities.Skill saveSkill(com.cg.freelanceapp.entities.Skill skill);
+		
 
 	}
 		
