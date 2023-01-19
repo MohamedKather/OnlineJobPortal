@@ -29,20 +29,13 @@ public class AdminController {
 
 	@Autowired
 	private AdminService serv;
-	/*
-	@PostMapping("/registerAdmin")
-	public ResponseEntity<Admin> registerAdmin(@Valid @RequestBody Admin ad, BindingResult result){
-		if(result.hasErrors())
-			return new ResponseEntity<Admin> (HttpStatus.CONFLICT);
-		Admin regAdmin=serv.registerAdmin(ad);
-		return new ResponseEntity<Admin>(HttpStatus.CREATED);
-	}
 	@PostMapping("/loginAdmin")
-	public ResponseEntity<String> loginAdmin(@RequestBody String email, @RequestBody String password ){
-		String logAdmin=serv.loginAdmin(email,password);
-		return new ResponseEntity<String>(logAdmin,HttpStatus.ACCEPTED);
+	public ResponseEntity<String> loginAdmin(@RequestBody Admin ad){
+		String s=serv.loginadmin(ad);
+		return new ResponseEntity<>(s,HttpStatus.OK);
 	}
-*/
+
+
 	@PostMapping("/saveAdmin")
 	public ResponseEntity<Admin> saveAdmin(Admin ent)throws UserAlreadyExistException{
 		Admin savedad=serv.saveAdmin(ent);
@@ -62,9 +55,9 @@ public class AdminController {
 		
 	}
 	
-	@PutMapping("/updateAdmin")
-	public ResponseEntity<Admin> updateAdmin(@RequestBody Admin ent){
-		Admin update=serv.updateAdmin(ent);
+	@PutMapping("/updateAdmin/{adminId}")
+	public ResponseEntity<Admin> updateAdmin(@PathVariable int adminId, @RequestBody Admin ent){
+		Admin update=serv.updateAdmin(adminId,ent);
 		return new ResponseEntity<Admin>(update, HttpStatus.ACCEPTED);
 		
 	}

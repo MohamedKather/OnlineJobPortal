@@ -40,21 +40,22 @@ public class AdminServiceImpl implements AdminService{
 	}
 
 	@Override
-	public Admin updateAdmin(Admin ent) {
-		Admin up=repo.save(ent);
-		return up;
+	public Admin updateAdmin(long adminId,Admin ent) {
+		if(!(repo.existsById(ent.getAdminId()))) {
+			System.out.println("Admin Doesn't Exist");
+		}
+		Admin ad=repo.save(ent);
+		return ad;
 	}
 
 	@Override
-	public Admin registerAdmin(@Valid Admin ad) {
-		Admin register=repo.save(ad);
-		return register;
+	public String loginadmin(Admin ad) {
+		List<Admin> a=repo.getByEmail(ad.getEmail());
+		List<Admin> b=repo.getByPassword(ad.getPassword());
+		if(a.equals(ad.getEmail()) && b.equals(ad.getPassword())){
+				return "Login Successfull";
 	}
-
-	@Override
-	public String loginAdmin(String email, String password) {
-		
-		return null;
+		return "Invalid email or password";
 	}
 
 }

@@ -5,8 +5,6 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -21,12 +19,14 @@ public class Admin {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long adminId;
-	@Size(min = 5, message = "It's Required Field")
+	@Column(nullable = false)
 	private String firstName;
-	@NotNull
+	@Column(nullable = false)
 	private String lastName;
-	@Column(nullable = false, length = 10)
+	@Column(nullable = false)
 	private String userName;
-	@Column(nullable = false, length = 10)
+	@Column(nullable = false)
+	private String email;
+	@Column(nullable = false)
 	private String password;
 }

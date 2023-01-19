@@ -16,13 +16,7 @@ public interface AdminService {
 
 	Optional<Admin> getAdminById(long adminId);
 
-	Admin updateAdmin(Admin ent);
+	Admin updateAdmin(long admind, Admin ent);
 
-	String loginAdmin(String email, String password);
-
-	Admin registerAdmin(@Valid Admin ad);
-
-
-	
-
+	String loginadmin(Admin ad);;
 }
