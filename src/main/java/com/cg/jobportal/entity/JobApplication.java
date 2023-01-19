@@ -2,11 +2,14 @@ package com.cg.jobportal.entity;
 
 import java.time.LocalDateTime;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -25,17 +28,15 @@ public class JobApplication {
 	@Column(nullable=false,length=50)
 	private String coverLetter;
 	
+	@ManyToOne(targetEntity = Job.class, cascade = CascadeType.ALL)
+	@JoinColumn(name = "job_id")
+	private Job job;
 	
+	@ManyToOne(targetEntity = Freelancer.class, cascade = CascadeType.ALL)
+	@JoinColumn(name="freelancer_id")
+	private Freelancer freelancer;
 	
-	
-	/*@Column(name="fr_id",nullable = false, length=6)
-	private long freelancerId;
-	@Column(nullable = false, length=100)
-	private String freelancerName;
-	@Column(nullable = false, length=100)
-	private String freelancerUName;*/
-	//many to one
-		//private Jobs job;
+
 	
 	
 	

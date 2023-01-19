@@ -25,7 +25,6 @@ public class JobApplicationController {
 	@Autowired
 	private JobApplicationService jobApplicationService;
 
-	@ApiOperation(value = "apply to job application")
 	@PostMapping(value = "/apply")
 	public ResponseEntity<String> applyToJob(@RequestBody JobApplication jobApplication) {
 		JobApplication jp = jobApplicationService.applyToJob(jobApplication);
@@ -38,7 +37,7 @@ public class JobApplicationController {
 	}
 
 	@DeleteMapping(value = "/delete/{id}")
-	public ResponseEntity<Object> remove(@Valid @PathVariable long id) {
+	public ResponseEntity<Object> remove(@Valid @PathVariable long id) throws NoElementFoundException {
 		jobApplicationService.remove(id);
 		return new ResponseEntity<>("job application deleted successfully", HttpStatus.OK);
 	}
@@ -49,19 +48,4 @@ public class JobApplicationController {
 		jobApplicationService.updateJobApplication(id, jobApplication);
 		return new ResponseEntity<>("job application updated successfully", HttpStatus.OK);
 	}
-
-	/*
-	 * @GetMapping(value = "/findAll/job/{jobId}") public ResponseEntity<Object>
-	 * findAllApplications(@PathVariable Long jobId) throws
-	 * InvalidJobApplicationException { return new
-	 * ResponseEntity<>(jobApplicationService.findAllByJobId(jobId), HttpStatus.OK);
-	 * }
-	 * 
-	 * 
-	 * /*@GetMapping(value = "/findByFrId/job/{jobId}/frId/{frId}") public
-	 * ResponseEntity<Object> findByFrId(@PathVariable Long frId) { return new
-	 * ResponseEntity<>(jobApplicationService.findByFreeLancerid(frId),
-	 * HttpStatus.OK); }
-	 */
-
 }

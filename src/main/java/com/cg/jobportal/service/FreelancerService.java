@@ -18,7 +18,7 @@ public interface FreelancerService {
 
 	Freelancer updateFreelancer(Freelancer free);
 
-	List<Freelancer> FreelancerByFirstName(String firstName);
+	List<Freelancer> FreelancerByUserName(String userName);
 
 	
 }
