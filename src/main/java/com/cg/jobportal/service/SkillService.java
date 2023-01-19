@@ -1,13 +1,17 @@
 package com.cg.jobportal.service;
 
 import java.util.List;
-import java.util.Optional;
+import org.springframework.stereotype.Service;
 
+import com.cg.jobportal.entity.BookmarkedFreelancer;
 import com.cg.jobportal.entity.Skill;
+import com.cg.jobportal.exception.BookmarkedFreelancerAlreadyExistsException;
+import com.cg.jobportal.exceptions.InvalidSkillException;
 
+@Service
 public interface SkillService {
-	
-	
+
+	Skill saveSkill(Skill skl) throws InvalidSkillException;
 
 	Skill getSkill(Skill ent);
 
@@ -15,14 +19,4 @@ public interface SkillService {
 
 	String deleteById(long id);
 
-	Skill saveSkill(Skill ent);
-
-	Optional<com.cg.freelanceapp.entities.Skill> getSkillById(long skillId);
-
-	com.cg.freelanceapp.entities.Skill saveSkill(com.cg.freelanceapp.entities.Skill skill);
-	
-		
-
-	}
-		
-
+}

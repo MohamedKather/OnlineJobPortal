@@ -3,9 +3,6 @@ package com.cg.jobportal.controller;
 import java.util.List;
 
 
-
-import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,15 +14,16 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 import com.cg.jobportal.entity.Skill;
+import com.cg.jobportal.exceptions.InvalidSkillException;
 import com.cg.jobportal.service.SkillService;
 
 public class SkillController {
 	@Autowired
 	private SkillService serv;
 
-	@PostMapping("/saveSkill")
-	public ResponseEntity<Skill> saveSkill(Skill ent){
-		Skill savedskill =  serv.getSkill(ent);
+	@PostMapping("/add")
+	public ResponseEntity<Skill> saveSkill(@RequestBody Skill skl) throws InvalidSkillException {
+		Skill savedskill = serv.saveSkill(skl);
 		return new ResponseEntity<Skill>(savedskill, HttpStatus.CREATED);
 	}
 
@@ -36,16 +34,11 @@ public class SkillController {
 	}
 
 	@GetMapping("/allSkills")
-	 public ResponseEntity<List<Skill>> getAllSkills(SkillService skillService) {	
-		List<Skill> Skills=skillService.getAllSkills();
-		return new ResponseEntity<List<Skill>>(HttpStatus.OK); 
-	 }
-
-	@GetMapping("/getSkill/{id}")
-	 public <Skills> ResponseEntity<List<Skills>> getSkillId(@PathVariable int id){
-		Skill skill = new Skill();
-		 return new ResponseEntity(skill, HttpStatus.OK);
+	public ResponseEntity<List<Skill>> getAllSkills(SkillService skillService) {
+		List<Skill> Skills = serv.getAllSkills();
+		return new ResponseEntity<List<Skill>>(Skills, HttpStatus.OK);
 	}
+
 
 	@DeleteMapping("/deleteSkill/{id}")
 	public ResponseEntity<String> deleteSkillById(@PathVariable int id) {
