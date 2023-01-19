@@ -1,30 +1,30 @@
 package com.cg.jobportal.entity;
 
-
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
-import lombok.Getter;
+import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
+
 
 
 @Entity
-@Setter
-@Getter
-@NoArgsConstructor
+@Data
 @AllArgsConstructor
+@NoArgsConstructor
+public class Jobs {
 
-public class Feedback  {
-
-	
 	@Id
+	@Column(name = "job_id")
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	Long id;
-	
-	Integer ranges;
-	String comments;
-
+	private long id;
+	@Column(nullable = false, length=10)
+	private String jobTitle;
+	@Column(nullable = false, length=100)
+	private String jobDescription;
+	@Column(nullable = false)
+	private Boolean active;
 }

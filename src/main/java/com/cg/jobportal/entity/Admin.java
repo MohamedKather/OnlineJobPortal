@@ -14,7 +14,6 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-@AllArgsConstructor
 public class Admin {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -29,4 +28,14 @@ public class Admin {
 	private String email;
 	@Column(nullable = false)
 	private String password;
+
+	public Admin(String firstName, String lastName, String userName, String email, String password) {
+		super();
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.userName = userName;
+		this.email = email;
+		this.password = password;
+	}
+
 }

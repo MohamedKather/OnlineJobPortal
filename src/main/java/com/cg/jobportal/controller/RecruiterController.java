@@ -36,6 +36,8 @@ public class RecruiterController {
 		return new ResponseEntity<>(Recruiter, HttpStatus.OK);
 	}
 	
+	
+	
 	@DeleteMapping("/deleteRecruiterId/{id}")
 	public ResponseEntity<String> deleteById(@PathVariable Long id) {
 		String delete = recServ.deleteById(id);

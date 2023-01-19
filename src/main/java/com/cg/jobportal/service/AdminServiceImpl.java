@@ -5,57 +5,70 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import com.cg.jobportal.entity.Admin;
-import com.cg.jobportal.exception.UserAlreadyExistException;
+import com.cg.jobportal.exceptions.AdminAlreadyExistException;
+import com.cg.jobportal.exceptions.InvalidAdminException;
 import com.cg.jobportal.repository.AdminRepository;
 
 import jakarta.validation.Valid;
 
 @Service
-public class AdminServiceImpl implements AdminService{
+public class AdminServiceImpl implements AdminService {
 
 	@Autowired
 	AdminRepository repo;
-	
+
 	@Override
-	public Admin saveAdmin(Admin ent)throws UserAlreadyExistException {
-		if(repo.existsById(ent.getAdminId())) {
-			throw new UserAlreadyExistException();
+	public Admin saveAdmin(Admin ent) throws AdminAlreadyExistException {
+		if (repo.existsById(ent.getAdminId())) {
+			throw new AdminAlreadyExistException();
 		}
-		Admin ad=repo.save(ent);
+		Admin ad = repo.save(ent);
 		return ad;
 	}
 
 	@Override
 	public List<Admin> getAllAdmins() {
-		List<Admin> list=repo.findAll();
+		List<Admin> list = repo.findAll();
 		return list;
 	}
 
 	@Override
-	public Optional<Admin> getAdminById(long adminId) {
-		Optional<Admin> get=repo.findById(adminId);
-		return get;
+	public Optional<Admin> getAdminById(Long adminId) throws InvalidAdminException {
+		if (repo.existsById(adminId)) {
+			Optional<Admin> finding = repo.findById(adminId);
+			return finding;
+		} else {
+			throw new InvalidAdminException();
+		}
 	}
 
 	@Override
-	public Admin updateAdmin(long adminId,Admin ent) {
-		if(!(repo.existsById(ent.getAdminId()))) {
+	public Admin updateAdmin(long adminId, Admin ent) {
+		if (!(repo.existsById(ent.getAdminId()))) {
 			System.out.println("Admin Doesn't Exist");
 		}
-		Admin ad=repo.save(ent);
+		Admin ad = repo.save(ent);
 		return ad;
 	}
 
 	@Override
 	public String loginadmin(Admin ad) {
-		List<Admin> a=repo.getByEmail(ad.getEmail());
-		List<Admin> b=repo.getByPassword(ad.getPassword());
-		if(a.equals(ad.getEmail()) && b.equals(ad.getPassword())){
-				return "Login Successfull";
-	}
+		List<Admin> a = repo.getByEmail(ad.getEmail());
+		List<Admin> b = repo.getByPassword(ad.getPassword());
+		if (a.equals(ad.getEmail()) && b.equals(ad.getPassword())) {
+			return "Login Successfull";
+		}
 		return "Invalid email or password";
+	}
+
+	@Override
+	public Admin getAdminByUserName(String userName) throws InvalidAdminException {
+		if (repo.existsByUserName(userName)) {
+			return repo.findByUserName(userName);
+		} else {
+			throw new InvalidAdminException();
+		}
 	}
 
 }

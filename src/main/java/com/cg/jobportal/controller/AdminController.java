@@ -18,7 +18,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.cg.jobportal.entity.Admin;
-import com.cg.jobportal.exception.UserAlreadyExistException;
+import com.cg.jobportal.exceptions.AdminAlreadyExistException;
+import com.cg.jobportal.exceptions.InvalidAdminException;
 import com.cg.jobportal.service.AdminService;
 
 
@@ -37,7 +38,7 @@ public class AdminController {
 
 
 	@PostMapping("/saveAdmin")
-	public ResponseEntity<Admin> saveAdmin(Admin ent)throws UserAlreadyExistException{
+	public ResponseEntity<Admin> saveAdmin(Admin ent)throws AdminAlreadyExistException{
 		Admin savedad=serv.saveAdmin(ent);
 		return new ResponseEntity<Admin>(savedad,HttpStatus.CREATED);
 		
@@ -49,8 +50,15 @@ public class AdminController {
 	}
 	
 	@GetMapping("/getAdmin/{adminId}")
-	public ResponseEntity<Optional<Admin>> getAdminById(@PathVariable int adminId){
+	public ResponseEntity<Optional<Admin>> getAdminById(@PathVariable long adminId) throws InvalidAdminException{
 		Optional<Admin> std=serv.getAdminById(adminId);
+		return new ResponseEntity<>(std, HttpStatus.OK);
+		
+	}
+	
+	@GetMapping("/getAdmin/{userName}")
+	public ResponseEntity<Admin> getAdminByUserName(@PathVariable String userName) throws InvalidAdminException{
+		Admin std=serv.getAdminByUserName(userName);
 		return new ResponseEntity<>(std, HttpStatus.OK);
 		
 	}
