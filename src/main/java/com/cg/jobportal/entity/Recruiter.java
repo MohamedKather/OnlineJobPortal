@@ -1,16 +1,25 @@
 package com.cg.jobportal.entity;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 
 @Entity
 public class Recruiter {
 	
 	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private  Long id;
+	@Column(nullable = false)
 	private String firstName;
 	private String lastName;
+	@Column(nullable = false)
 	private String userName;
+	@Column(nullable = false)
 	private String password;
 	
 	public Recruiter(Long id, String firstName, String lastName, String userName, String password) {
