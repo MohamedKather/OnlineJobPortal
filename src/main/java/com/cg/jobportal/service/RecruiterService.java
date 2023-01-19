@@ -7,12 +7,12 @@ import com.cg.jobportal.entity.Recruiter;
 
 public interface RecruiterService {
 	
-	Recruiter saveJob(Recruiter rec);
+	Recruiter saveRecruiter(Recruiter rec);
 	
-	List<Recruiter> getAllJobs();
+	List<Recruiter> getAllRecruiters();
 	
 	String deleteById(Long id);
 	
-	Recruiter updateJob(Recruiter rec);
+	Recruiter updateRecruiter(Recruiter rec);
 
 }

@@ -6,14 +6,22 @@ import jakarta.persistence.Id;
 @Entity
 public class BookmarkedJob {
 	@Id
+<<<<<<< HEAD
 	private Long id;
+=======
+	private Long Id;
+>>>>>>> 776633c4ccacd1fd31533e1914bbdfbaadda2e20
 	private String job;
 	private String skill;
 	private String freelancer;
 	
 	public BookmarkedJob(Long id, String job, String skill, String freelancer) {
 		super();
+<<<<<<< HEAD
 		this.id = id;
+=======
+		this.Id = id;
+>>>>>>> 776633c4ccacd1fd31533e1914bbdfbaadda2e20
 		this.job = job;
 		this.skill = skill;
 		this.freelancer = freelancer;

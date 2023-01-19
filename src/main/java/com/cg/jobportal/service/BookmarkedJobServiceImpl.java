@@ -8,7 +8,10 @@ import org.springframework.stereotype.Service;
 import com.cg.jobportal.entity.BookmarkedJob;
 import com.cg.jobportal.entity.Recruiter;
 import com.cg.jobportal.repository.BookmarkedJobRepository;
+<<<<<<< HEAD
 
+=======
+>>>>>>> 776633c4ccacd1fd31533e1914bbdfbaadda2e20
 @Service
 public class BookmarkedJobServiceImpl implements BookmarkedJobService{
 	
@@ -22,7 +25,7 @@ public class BookmarkedJobServiceImpl implements BookmarkedJobService{
 	}
 
 	@Override
-	public List<BookmarkedJob> getAllBookmarkedJobs() {
+	public List<BookmarkedJob> getAllBookmarked() {
 		List<BookmarkedJob> BookmarkedJobs=bookRepo.findAll();
 		return BookmarkedJobs;
 	}

@@ -2,14 +2,13 @@ package com.cg.jobportal.service;
 import java.util.List;
 import java.util.Optional;
 
-import com.cg.freelanceapp.dto.FreelancerListDTO;
-import com.cg.freelanceapp.entities.Freelancer;
+import com.cg.jobportal.entity.Freelancer;
 
 import jakarta.validation.Valid;
 
 public interface FreelancerService {
 
-	Freelancer saveFreelancer(Freelancer f);
+	Freelancer saveFreelancer(Freelancer free);
 
 	List<Freelancer> getAllFreelancer();
 
@@ -17,7 +16,7 @@ public interface FreelancerService {
 
 	String deleteFreelancer(long id);
 
-	Freelancer updateFreelancer(Freelancer f);
+	Freelancer updateFreelancer(Freelancer free);
 
 	List<Freelancer> FreelancerByFirstName(String firstName);
 

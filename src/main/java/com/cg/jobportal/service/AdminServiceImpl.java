@@ -7,7 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.cg.jobportal.entity.Admin;
+import com.cg.jobportal.exception.UserAlreadyExistException;
 import com.cg.jobportal.repository.AdminRepository;
+
+import jakarta.validation.Valid;
 
 @Service
 public class AdminServiceImpl implements AdminService{
@@ -16,7 +19,10 @@ public class AdminServiceImpl implements AdminService{
 	AdminRepository repo;
 	
 	@Override
-	public Admin saveAdmin(Admin ent) {
+	public Admin saveAdmin(Admin ent)throws UserAlreadyExistException {
+		if(repo.existsById(ent.getAdminId())) {
+			throw new UserAlreadyExistException();
+		}
 		Admin ad=repo.save(ent);
 		return ad;
 	}
@@ -28,7 +34,7 @@ public class AdminServiceImpl implements AdminService{
 	}
 
 	@Override
-	public Optional<Admin> getAdminById(int adminId) {
+	public Optional<Admin> getAdminById(long adminId) {
 		Optional<Admin> get=repo.findById(adminId);
 		return get;
 	}
@@ -37,6 +43,18 @@ public class AdminServiceImpl implements AdminService{
 	public Admin updateAdmin(Admin ent) {
 		Admin up=repo.save(ent);
 		return up;
+	}
+
+	@Override
+	public Admin registerAdmin(@Valid Admin ad) {
+		Admin register=repo.save(ad);
+		return register;
+	}
+
+	@Override
+	public String loginAdmin(String email, String password) {
+		
+		return null;
 	}
 
 }

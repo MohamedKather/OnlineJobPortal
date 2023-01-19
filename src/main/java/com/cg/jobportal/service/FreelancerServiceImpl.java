@@ -6,48 +6,53 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.cg.freelanceapp.entities.Freelancer;
+import com.cg.jobportal.entity.Freelancer;
 import com.cg.jobportal.repository.FreelancerRepository;
+
 @Service
 public class FreelancerServiceImpl implements FreelancerService {
     
 	@Autowired
-	FreelancerRepository freelancerRepository;
+	FreelancerRepository frepo;
 
 	@Override
-	public Freelancer saveFreelancer(Freelancer ent) {
-		Freelancer ad=freelancerRepository.save(ent);
-		return ad;
+	public Freelancer saveFreelancer(Freelancer free) {
+		Freelancer saved = frepo.save(free);
+		return saved;
 	}
 
 	@Override
 	public List<Freelancer> getAllFreelancer() {
-		List<Freelancer> list=freelancerRepository.findAll();
+		List<Freelancer> list = frepo.findAll();
 		return list;
 	}
 
 	@Override
 	public Optional<Freelancer> getFreelancerById(long id) {
-		Optional<Freelancer> get=freelancerRepository.findById(id);
-		return get;
-	}
-
-	@Override
-	public Freelancer updateFreelancer(Freelancer ent) {
-		Freelancer up=freelancerRepository.save(ent);
-		return up;
+		Optional<Freelancer> getId = frepo.findById(id);
+		return getId;
 	}
 
 	@Override
 	public String deleteFreelancer(long id) {
-		freelancerRepository.deleteById(id);
-		return "deleted succuessfully";
+		Optional<Freelancer> getId = frepo.findById(id);
+		if(getId.isPresent()) {
+			frepo.deleteById(id);
+		}
+		return "Freelancer Doesn't Exists";
 	}
 
 	@Override
-	public List<Freelancer>FreelancerByFirstName(String firstName){
-		List<Freelancer>emp=freelancerRepository.findByFirstName(firstName);
-		return emp;
+	public Freelancer updateFreelancer(Freelancer free) {
+		Freelancer update = frepo.save(free);
+		return update;
 	}
 
+	@Override
+	public List<Freelancer> FreelancerByFirstName(String firstName) {
+		List<Freelancer> getName = frepo.findByFirstName(firstName);
+		return getName;
+	}
+	
+	
 }
