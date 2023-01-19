@@ -7,9 +7,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
 
-
-
-
 @ControllerAdvice
 public class GlobalExceptionHandler {
 	
@@ -20,8 +17,13 @@ public class GlobalExceptionHandler {
 
 	
 	@ExceptionHandler(value=RecruiterAlreadyExistException.class)
-	public ResponseEntity<String>RecruiterAlreadyExistsException(RecruiterAlreadyExistException user){
+	public ResponseEntity<String>RecruiterAlreadyExistException(RecruiterAlreadyExistException user){
 		return new ResponseEntity<String>("Recruiter already exist in database",HttpStatus.CONFLICT);
+	}
+	
+	@ExceptionHandler(value=BookmarkedJobExistException.class)
+	public ResponseEntity<String>BookmarkedJobExistException(BookmarkedJobExistException user){
+		return new ResponseEntity<String>("selected job already bookmarked",HttpStatus.CONFLICT);
 	}
 
 	@ExceptionHandler(value=BookmarkedFreelancerAlreadyExistsException.class)

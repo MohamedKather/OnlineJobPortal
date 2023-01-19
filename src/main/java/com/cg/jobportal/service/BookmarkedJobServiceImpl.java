@@ -25,5 +25,11 @@ public class BookmarkedJobServiceImpl implements BookmarkedJobService{
 		List<BookmarkedJob> BookmarkedJobs=bookRepo.findAll();
 		return BookmarkedJobs;
 	}
+	
+	@Override
+	public String deleteById(Long id) {
+		bookRepo.deleteById(id);
+		return "Bookmark deleted successfully";
+	}
 
 }
