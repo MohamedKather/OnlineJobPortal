@@ -29,4 +29,5 @@ public class Admin {
 	private String userName;
 	@Column(nullable = false, length = 10)
 	private String password;
+	private String email;
 }
