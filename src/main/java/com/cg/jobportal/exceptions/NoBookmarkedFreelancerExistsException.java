@@ -1,4 +1,4 @@
-package com.cg.jobportal.exception;
+package com.cg.jobportal.exceptions;
 
 public class NoBookmarkedFreelancerExistsException extends Exception{
 	String msg;

@@ -12,8 +12,6 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
 
-
-
 @Entity
 public class BookmarkedFreelancer {
 	@Id
@@ -30,7 +28,6 @@ public class BookmarkedFreelancer {
 	
 	@ManyToOne(targetEntity=Recruiter.class, cascade= { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH})
 	@JoinColumn(name="recruiter_id")
-	@OnDelete(action=OnDeleteAction.CASCADE)
 	private Recruiter bookmarkedBy;
 	
 	

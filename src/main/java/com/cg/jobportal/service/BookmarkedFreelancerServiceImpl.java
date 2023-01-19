@@ -7,8 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.cg.jobportal.entity.BookmarkedFreelancer;
-import com.cg.jobportal.exception.BookmarkedFreelancerAlreadyExistsException;
-import com.cg.jobportal.exception.NoBookmarkedFreelancerExistsException;
+import com.cg.jobportal.exceptions.BookmarkedFreelancerAlreadyExistsException;
+import com.cg.jobportal.exceptions.NoBookmarkedFreelancerExistsException;
 import com.cg.jobportal.repository.BookmarkedFreelancerRepository;
 
 

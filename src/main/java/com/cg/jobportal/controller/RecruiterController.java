@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.cg.jobportal.entity.Recruiter;
-import com.cg.jobportal.exception.RecruiterAlreadyExistException;
+import com.cg.jobportal.exceptions.RecruiterAlreadyExistException;
 import com.cg.jobportal.service.RecruiterService;
 @RestController
 public class RecruiterController {

@@ -5,17 +5,15 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.cg.jobportal.entity.BookmarkedJob;
+import com.cg.jobportal.exception.BookmarkedJobExistException;
 import com.cg.jobportal.service.BookmarkedJobService;
 
 @RestController
@@ -25,7 +23,7 @@ public class BookmarkedJobController {
 	public BookmarkedJobService bookServ;
 
 	@PostMapping("/saveJob")
-	public ResponseEntity<BookmarkedJob> saveJob(@RequestBody BookmarkedJob book){
+	public ResponseEntity<BookmarkedJob> saveJob(@RequestBody BookmarkedJob book) throws BookmarkedJobExistException{
 		BookmarkedJob savedJob = bookServ.saveJob(book);
 		return new ResponseEntity<>(savedJob, HttpStatus.CREATED);
 	}
@@ -35,4 +33,11 @@ public class BookmarkedJobController {
 		List<BookmarkedJob> bookmark=bookServ.getAllBookmarkedJobs();
 		return new ResponseEntity<List<BookmarkedJob>>(bookmark, HttpStatus.OK);
 	}
+	
+	@DeleteMapping("/deleteBookmarkById/{id}")
+	public ResponseEntity<String> deleteBookmarkById(@PathVariable Long id) {
+		String delete = bookServ.deleteById(id);
+		return new ResponseEntity<>(delete, HttpStatus.OK);
+	}
+	
 }

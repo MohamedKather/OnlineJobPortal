@@ -18,7 +18,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.cg.jobportal.entity.Admin;
-import com.cg.jobportal.exception.UserAlreadyExistException;
+import com.cg.jobportal.exceptions.AdminAlreadyExistException;
+import com.cg.jobportal.exceptions.InvalidAdminException;
 import com.cg.jobportal.service.AdminService;
 
 
@@ -29,22 +30,14 @@ public class AdminController {
 
 	@Autowired
 	private AdminService serv;
-	/*
-	@PostMapping("/registerAdmin")
-	public ResponseEntity<Admin> registerAdmin(@Valid @RequestBody Admin ad, BindingResult result){
-		if(result.hasErrors())
-			return new ResponseEntity<Admin> (HttpStatus.CONFLICT);
-		Admin regAdmin=serv.registerAdmin(ad);
-		return new ResponseEntity<Admin>(HttpStatus.CREATED);
-	}*/
 	@PostMapping("/loginAdmin")
-	public ResponseEntity<String> loginAdmin(@RequestBody String email, @RequestBody String password ){
-		String logAdmin=serv.loginAdmin(email,password);
-		return new ResponseEntity<String>(logAdmin,HttpStatus.ACCEPTED);
+	public ResponseEntity<String> loginAdmin(@RequestBody Admin ad){
+		String s=serv.loginadmin(ad);
+		return new ResponseEntity<>(s,HttpStatus.OK);
 	}
 
 	@PostMapping("/saveAdmin")
-	public ResponseEntity<Admin> saveAdmin(Admin ent)throws UserAlreadyExistException{
+	public ResponseEntity<Admin> saveAdmin(Admin ent)throws AdminAlreadyExistException{
 		Admin savedad=serv.saveAdmin(ent);
 		return new ResponseEntity<Admin>(savedad,HttpStatus.CREATED);
 		
@@ -56,15 +49,22 @@ public class AdminController {
 	}
 	
 	@GetMapping("/getAdmin/{adminId}")
-	public ResponseEntity<Optional<Admin>> getAdminById(@PathVariable int adminId){
+	public ResponseEntity<Optional<Admin>> getAdminById(@PathVariable long adminId) throws InvalidAdminException{
 		Optional<Admin> std=serv.getAdminById(adminId);
 		return new ResponseEntity<>(std, HttpStatus.OK);
 		
 	}
 	
-	@PutMapping("/updateAdmin")
-	public ResponseEntity<Admin> updateAdmin(@RequestBody Admin ent){
-		Admin update=serv.updateAdmin(ent);
+	@GetMapping("/getAdmin/{userName}")
+	public ResponseEntity<Admin> getAdminByUserName(@PathVariable String userName) throws InvalidAdminException{
+		Admin std=serv.getAdminByUserName(userName);
+		return new ResponseEntity<>(std, HttpStatus.OK);
+		
+	}
+	
+	@PutMapping("/updateAdmin/{adminId}")
+	public ResponseEntity<Admin> updateAdmin(@PathVariable int adminId, @RequestBody Admin ent){
+		Admin update=serv.updateAdmin(adminId,ent);
 		return new ResponseEntity<Admin>(update, HttpStatus.ACCEPTED);
 		
 	}
