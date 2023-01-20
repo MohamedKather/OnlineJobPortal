@@ -1,12 +1,17 @@
 package com.cg.jobportal.entity;
 
+import java.util.List;
+import com.cg.freelanceapp.entities.BookmarkedFreelancer;
+import com.cg.freelanceapp.entities.Feedback;
+import com.cg.freelanceapp.entities.Job;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
+import jakarta.persistence.OneToMany;
 
 @Entity
 public class Recruiter {
@@ -23,6 +28,18 @@ public class Recruiter {
 	private String userName;
 	@Column(nullable = false)
 	private String password;
+	
+	@OneToMany(mappedBy = "postedBy", targetEntity = Job.class, cascade = CascadeType.ALL)
+	@Column(name = "job_id")
+	private List<Job> postedJobs;
+	
+	@OneToMany(mappedBy = "createdBy", targetEntity = Feedback.class, cascade = CascadeType.ALL)
+	@Column(name = "feedback_id")
+	private List<Feedback> feedbacks;
+	
+	@OneToMany(mappedBy = "bookmarkedBy", targetEntity = BookmarkedFreelancer.class, cascade = CascadeType.ALL)
+	@Column(name = "bookmarkedFreelancer_id")
+	private List<BookmarkedFreelancer> freelancers;
 	
 	public Recruiter(Long id, String firstName, String lastName, String userName, String password) {
 		super();

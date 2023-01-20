@@ -4,6 +4,7 @@ import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
 import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -15,6 +16,7 @@ import jakarta.persistence.OneToOne;
 @Entity
 public class BookmarkedFreelancer {
 	@Id
+	@Column(name = "bookmarkedFreelancer_id")
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 	
