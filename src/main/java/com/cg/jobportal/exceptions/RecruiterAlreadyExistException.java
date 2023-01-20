@@ -1,4 +1,4 @@
-package com.cg.jobportal.exception;
+package com.cg.jobportal.exceptions;
 
 public class RecruiterAlreadyExistException extends Exception {
 	private String msg;

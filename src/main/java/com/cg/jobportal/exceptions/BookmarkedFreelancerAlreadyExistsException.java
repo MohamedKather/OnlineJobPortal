@@ -1,4 +1,4 @@
-package com.cg.jobportal.exception;
+package com.cg.jobportal.exceptions;
 
 public class BookmarkedFreelancerAlreadyExistsException extends Exception{
 	private String msg;

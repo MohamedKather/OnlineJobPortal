@@ -49,8 +49,8 @@ public class FreelancerServiceImpl implements FreelancerService {
 	}
 
 	@Override
-	public List<Freelancer> FreelancerByFirstName(String firstName) {
-		List<Freelancer> getName = frepo.findByFirstName(firstName);
+	public List<Freelancer> FreelancerByUserName(String userName) {
+		List<Freelancer> getName = frepo.findByUserName(userName);
 		return getName;
 	}
 	

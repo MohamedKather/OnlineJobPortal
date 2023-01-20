@@ -59,9 +59,9 @@ public class FreelancerController {
 		 return fserv.updateFreelancer(free);
 	 }
 	 
-	 @GetMapping("/Freelancer/{firstName}")
-	 public List<Freelancer> getFreelancerByFirstName(@PathVariable String firstName){
-		 List<Freelancer> list = fserv.FreelancerByFirstName(firstName);
+	 @GetMapping("/Freelancer/{userName}")
+	 public List<Freelancer> getFreelancerByFirstName(@PathVariable String userName){
+		 List<Freelancer> list = fserv.FreelancerByUserName(userName);
 		 return list;
 	 }
 }

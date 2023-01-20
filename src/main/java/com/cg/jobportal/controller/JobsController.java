@@ -7,10 +7,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.cg.jobportal.entity.Jobs;
+import com.cg.jobportal.entity.Job;
+import com.cg.jobportal.exceptions.InvalidJobException;
 import com.cg.jobportal.service.JobsService;
 
 @RestController
@@ -21,7 +21,7 @@ public class JobsController {
 	JobsService js; 
 	
 	@PostMapping("/postJob")
-	public ResponseEntity<Object> job(@RequestBody Jobs jobs) {
+	public ResponseEntity<Object> job(@RequestBody Job jobs) {
 		js.postJob(jobs);
 		return new ResponseEntity<>("Job Posted Successfully", HttpStatus.OK);
 	}
@@ -35,37 +35,25 @@ public class JobsController {
 	
 	@GetMapping(value = "/findById/{id}")
 	public ResponseEntity<Object> findById(@PathVariable long id) {
-		//try {
 			return new ResponseEntity<>(js.findById(id), HttpStatus.OK);
-		/*} catch (InvalidJobException exception) {
-			throw new InvalidJobException("Job with given id doesn't exist");
-		}*/
-
 	}
 
 	
 	@GetMapping("/deletejob/{id}")
 	public ResponseEntity<Object> deletejob(@PathVariable long id) {
-		//try {
 			js.deletejob(id);
-		/*} catch (InvalidJobException exception) {
-			throw new InvalidJobException("Job with given id not found");
-		}*/
 		return new ResponseEntity<>("deleted successfully", HttpStatus.OK);
 
 	}
 	
-	
-	
-	
+
 	@GetMapping(value = "/findJobsBySkill/{jobTitle}")
-	@ResponseBody
-	public ResponseEntity<Jobs> findByJobTitle(@PathVariable String jobTitle) {
-		//try {
+	public ResponseEntity<Job> findByJobTitle(@PathVariable String jobTitle) throws InvalidJobException{
+		if(js.findByJobTitle(jobTitle) != null) {
 			return new ResponseEntity<>(js.findByJobTitle(jobTitle), HttpStatus.OK);
-		/*} catch (InvalidJobException exception) {
-			throw new InvalidJobException("no job with this skill found");
-		}*/
+		}
+		else 
+			throw new InvalidJobException();
 
 	}
 	

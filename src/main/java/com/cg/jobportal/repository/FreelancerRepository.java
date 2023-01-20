@@ -11,7 +11,7 @@ import com.cg.jobportal.entity.Freelancer;
 @Repository
 public interface FreelancerRepository extends JpaRepository<Freelancer, Long> {
     
-	public List<Freelancer> findByFirstName(@Param("name")String firstName);
+	public List<Freelancer> findByUserName(@Param("name")String userName);
 
 	
 	public void deleteById(int id);

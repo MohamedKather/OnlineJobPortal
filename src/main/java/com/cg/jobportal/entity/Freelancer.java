@@ -1,67 +1,57 @@
 package com.cg.jobportal.entity;
 
+import java.util.List;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
+@Getter
+@Setter
+@NoArgsConstructor
 public class Freelancer {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name="freelancer_id", updatable=false)
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "freelancer_id", updatable = false)
 	private long id;
-    
+
 	private String userName;
 	private String firstName;
 	private String lastName;
 	private String passowrd;
-	public Freelancer(long id, String userName, String firstName, String lastName, String passowrd) {
+
+	@OneToMany(targetEntity = JobApplication.class)
+	private List<JobApplication> appliedJobs;
+
+	@OneToMany(mappedBy = "createdFor", targetEntity = Feedback.class, cascade = CascadeType.ALL)
+	private List<Feedback> feedbacks;
+
+	@OneToMany(mappedBy = "freelancer", targetEntity = SkillExperience.class, cascade = CascadeType.ALL)
+	private List<SkillExperience> skills;
+
+	@OneToMany(mappedBy = "freelancer", targetEntity = BookmarkedJob.class, cascade = CascadeType.ALL)
+	private List<BookmarkedJob> bookmarkedJobs;
+
+	public Freelancer(String userName, String firstName, String lastName, String passowrd,
+			List<JobApplication> appliedJobs, List<Feedback> feedbacks, List<SkillExperience> skills,
+			List<BookmarkedJob> bookmarkedJobs) {
 		super();
-		this.id = id;
 		this.userName = userName;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.passowrd = passowrd;
+		this.appliedJobs = appliedJobs;
+		this.feedbacks = feedbacks;
+		this.skills = skills;
+		this.bookmarkedJobs = bookmarkedJobs;
 	}
-	public Freelancer() {
-		super();
-	}
-	public long getId() {
-		return id;
-	}
-	public void setId(long id) {
-		this.id = id;
-	}
-	public String getUserName() {
-		return userName;
-	}
-	public void setUserName(String userName) {
-		this.userName = userName;
-	}
-	public String getFirstName() {
-		return firstName;
-	}
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
-	}
-	public String getLastName() {
-		return lastName;
-	}
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
-	}
-	public String getPassowrd() {
-		return passowrd;
-	}
-	public void setPassowrd(String passowrd) {
-		this.passowrd = passowrd;
-	}
-	@Override
-	public String toString() {
-		return "FreelancerEntity [id=" + id + ", userName=" + userName + ", firstName=" + firstName + ", lastName="
-				+ lastName + ", passowrd=" + passowrd + "]";
-	}
-	
+
 }

@@ -9,49 +9,36 @@ import com.cg.jobportal.entity.JobApplication;
 import com.cg.jobportal.repository.JobApplicationRepository;
 @Service
 public class JobApplicationServiceImplementation implements JobApplicationService {
-	
-	@Autowired
-	JobApplicationRepository jar;
+		@Autowired
+		JobApplicationRepository jar;
 
 
-	@Override
-	public JobApplication applyToJob(JobApplication jobApplication) {
-			
-			return jar.save(jobApplication);
-	}
+		@Override
+		public JobApplication applyToJob(JobApplication jobApplication) {
+				
+				return jar.save(jobApplication);
+		}
 
-	@Override
-	public List<JobApplication> findAll() {
-		return jar.findAll();
-	}
+		@Override
+		public List<JobApplication> findAll() {
+			return jar.findAll();
+		}
 
-	@Override
-	public void remove(long id)  {
-		if (jar.existsById(id)) {
+		@Override
+		public void remove(long id) throws NoElementFoundException {
+			if (jar.existsById(id)) {
 
-			jar.deleteById(id);
-		}	
-	}
-	
+				jar.deleteById(id);
+			}else throw new NoElementFoundException();	
+		}
+		
 
-	@Override
-	public JobApplication updateJobApplication(long id, JobApplication jobApplication) {
-			JobApplication jobApplication1 = jar.findById(id).get();
-			jar.save(jobApplication);
+		@Override
+		public JobApplication updateJobApplication(long id, JobApplication jobApplication) {
+				JobApplication jobApplication1 = jar.findById(id).get();
+				jar.save(jobApplication);
 
-			return jobApplication;
-	}
-	
-
-	/*@Override
-	public List<JobApplication> findAllByJobId(Long jobId) {
-		return jar.findAllByJobId(jobId);
-	}
-	
-	
-	/*@Override
-	public List<JobApplication> findByFreeLancerid(Long freelancerId) {
-		return jar.findByFreeLancerid(freelancerId);
-	}*/
+				return jobApplication;
+		}
 
 }

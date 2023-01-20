@@ -14,8 +14,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.cg.jobportal.entity.BookmarkedFreelancer;
-import com.cg.jobportal.exception.BookmarkedFreelancerAlreadyExistsException;
-import com.cg.jobportal.exception.NoBookmarkedFreelancerExistsException;
+import com.cg.jobportal.exceptions.BookmarkedFreelancerAlreadyExistsException;
+import com.cg.jobportal.exceptions.NoBookmarkedFreelancerExistsException;
 import com.cg.jobportal.service.BookmarkedFreelancerService;
 
 

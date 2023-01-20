@@ -7,6 +7,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
 
+
+
+
 @ControllerAdvice
 public class GlobalExceptionHandler {
 	
@@ -17,13 +20,8 @@ public class GlobalExceptionHandler {
 
 	
 	@ExceptionHandler(value=RecruiterAlreadyExistException.class)
-	public ResponseEntity<String>RecruiterAlreadyExistException(RecruiterAlreadyExistException user){
+	public ResponseEntity<String>RecruiterAlreadyExistsException(RecruiterAlreadyExistException user){
 		return new ResponseEntity<String>("Recruiter already exist in database",HttpStatus.CONFLICT);
-	}
-	
-	@ExceptionHandler(value=BookmarkedJobExistException.class)
-	public ResponseEntity<String>BookmarkedJobExistException(BookmarkedJobExistException user){
-		return new ResponseEntity<String>("selected job already bookmarked",HttpStatus.CONFLICT);
 	}
 
 	@ExceptionHandler(value=BookmarkedFreelancerAlreadyExistsException.class)
@@ -34,5 +32,10 @@ public class GlobalExceptionHandler {
 	public ResponseEntity<String> NoBookmarkedFreelancerExistsException(NoBookmarkedFreelancerExistsException msg){
 		return new ResponseEntity<String> (" No bookmarked freelancer exists in db", HttpStatus.CONFLICT);
 	} 
-
+	
+	@ExceptionHandler(value=InvalidSkillException.class)
+	public ResponseEntity<String> InvalidSkillException(InvalidSkillException msg){
+		return new ResponseEntity<String>("Invalid skill entered",HttpStatus.CONFLICT);
+	}
+	
 }

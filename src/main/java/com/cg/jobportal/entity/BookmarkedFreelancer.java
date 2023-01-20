@@ -28,9 +28,8 @@ public class BookmarkedFreelancer {
 	@JoinColumn(name="freelancer_id")
 	private Freelancer freelancer;
 	
-	@ManyToOne(targetEntity=Recruiter.class, cascade= { CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH})
+	@ManyToOne(targetEntity=Recruiter.class, cascade=CascadeType.ALL)
 	@JoinColumn(name="recruiter_id")
-	@OnDelete(action=OnDeleteAction.CASCADE)
 	private Recruiter bookmarkedBy;
 	
 	

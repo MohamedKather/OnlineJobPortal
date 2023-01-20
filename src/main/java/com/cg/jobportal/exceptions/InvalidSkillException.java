@@ -1,11 +1,11 @@
 package com.cg.jobportal.exceptions;
 
-public class InvalidSkillException extends RuntimeException{
-	public InvalidSkillException() {
+public class InvalidSkillException extends Exception{
+	private String msg;
+
+	public InvalidSkillException(String msg) {
 		super();
-	}
-	public InvalidSkillException(String message) {
-		super(message);
+		this.msg = msg;
 	}
 	
 

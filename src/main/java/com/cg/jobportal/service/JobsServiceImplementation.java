@@ -6,7 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.cg.jobportal.entity.Jobs;
+import com.cg.jobportal.entity.Job;
 
 import com.cg.jobportal.repository.JobsRepository;
 
@@ -46,9 +46,10 @@ public class JobsServiceImplementation implements JobsService {
     
     
 	@Override
-	public Jobs findByJobTitle(String jobTitle) {
+	public Jobs findByJobTitle(String jobTitle) throws InvalidJobException {
 	   return jar.findByJobTitle(jobTitle);
 	}
+
 
 }
 

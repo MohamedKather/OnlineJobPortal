@@ -12,4 +12,6 @@ public interface BookmarkedJobService {
 
 	String deleteById(Long id);
 
+	BookmarkedJob getById(Long id);
+
 }
